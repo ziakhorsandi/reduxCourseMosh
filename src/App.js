@@ -20,11 +20,11 @@ function App() {
 
   useEffect(() => {
     const store = configureStore();
-    store.dispatch(bugAdded('bug1'));
-    store.dispatch(bugAdded('bug2'));
-    store.dispatch(bugAdded('bug3'));
-    store.dispatch(bugResolved(1));
-    store.dispatch(bugRemoved(1));
+    store.dispatch(bugAdded({ description: 'bug1' }));
+    store.dispatch(bugAdded({ description: 'bug2' }));
+    store.dispatch(bugAdded({ description: 'bug3' }));
+    store.dispatch(bugResolved({ id: 1 }));
+    store.dispatch(bugRemoved({ id: 1 }));
   }, []);
 
   return (
