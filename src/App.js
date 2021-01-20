@@ -1,23 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
 
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import configureStore from './store/configureStore';
-// import store from './store/CustomeStore';
-import { bugAdded, bugRemoved, bugResolved } from './store/bug';
+import {
+  bugAdded,
+  bugRemoved,
+  bugResolved,
+  getUnresolvedBugs,
+  bugAssignedToUser,
+  getBugsByUser,
+} from './store/bug';
+import { userAdded } from './store/users';
+import { projectAdded } from './store/projects';
 
 function App() {
-  // store.subscribe(() => {
-  //   console.log('State changed!');
-  // });
-  // store.dispatch(bugAdded('bug1'));
-  // console.log('store.getState()', store.getState());
-  // console.log('store', store);
-
-  // store.subscribe(() => {
-  //   console.log('Store Changed!', store.getState());
-  // });
-
   useEffect(() => {
     const store = configureStore();
     store.dispatch(bugAdded({ description: 'bug1' }));
@@ -25,6 +22,22 @@ function App() {
     store.dispatch(bugAdded({ description: 'bug3' }));
     store.dispatch(bugResolved({ id: 1 }));
     store.dispatch(bugRemoved({ id: 1 }));
+
+    const x = getUnresolvedBugs(store.getState());
+    const y = getUnresolvedBugs(store.getState());
+    console.log(x === y);
+
+    const unresolvedBugs = getUnresolvedBugs(store.getState());
+    console.log(unresolvedBugs);
+
+    store.dispatch(projectAdded({ name: 'prj1' }));
+
+    store.dispatch(userAdded({ userName: 'name1' }));
+    store.dispatch(userAdded({ userName: 'name2' }));
+
+    store.dispatch(bugAssignedToUser({ userId: 1, bugId: 2 }));
+
+    console.log(getBugsByUser(1)(store.getState()));
   }, []);
 
   return (
