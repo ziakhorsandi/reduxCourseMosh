@@ -17,27 +17,29 @@ import { projectAdded } from './store/projects';
 function App() {
   useEffect(() => {
     const store = configureStore();
-    store.dispatch(bugAdded({ description: 'bug1' }));
-    store.dispatch(bugAdded({ description: 'bug2' }));
-    store.dispatch(bugAdded({ description: 'bug3' }));
-    store.dispatch(bugResolved({ id: 1 }));
-    store.dispatch(bugRemoved({ id: 1 }));
+    // store.dispatch(bugAdded({ description: 'bug1' }));
+    // store.dispatch(bugAdded({ description: 'bug2' }));
+    // store.dispatch(bugAdded({ description: 'bug3' }));
+    // store.dispatch(bugResolved({ id: 1 }));
+    // store.dispatch(bugRemoved({ id: 1 }));
 
-    const x = getUnresolvedBugs(store.getState());
-    const y = getUnresolvedBugs(store.getState());
-    console.log(x === y);
+    // const x = getUnresolvedBugs(store.getState());
+    // const y = getUnresolvedBugs(store.getState());
+    // console.log(x === y);
 
-    const unresolvedBugs = getUnresolvedBugs(store.getState());
-    console.log(unresolvedBugs);
+    // const unresolvedBugs = getUnresolvedBugs(store.getState());
+    // console.log(unresolvedBugs);
 
-    store.dispatch(projectAdded({ name: 'prj1' }));
+    // store.dispatch(projectAdded({ name: 'prj1' }));
 
-    store.dispatch(userAdded({ userName: 'name1' }));
-    store.dispatch(userAdded({ userName: 'name2' }));
+    // store.dispatch(userAdded({ userName: 'name1' }));
+    // store.dispatch(userAdded({ userName: 'name2' }));
 
-    store.dispatch(bugAssignedToUser({ userId: 1, bugId: 2 }));
+    // store.dispatch(bugAssignedToUser({ userId: 1, bugId: 2 }));
 
-    console.log(getBugsByUser(1)(store.getState()));
+    // console.log(getBugsByUser(1)(store.getState()));
+
+    store.dispatch(() => {});
   }, []);
 
   return (
