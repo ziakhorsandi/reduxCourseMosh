@@ -40,6 +40,11 @@ function App() {
     // console.log(getBugsByUser(1)(store.getState()));
 
     store.dispatch(() => {});
+
+    store.dispatch({
+      type: 'error',
+      payload: { message: 'An Error Accurred' },
+    });
   }, []);
 
   return (
