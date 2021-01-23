@@ -10,7 +10,7 @@ export default function setStore() {
     middleware: [
       ...getDefaultMiddleware(),
       logger({ describtion: 'console' }),
-      func,
+      // func,
       toast,
     ],
   });

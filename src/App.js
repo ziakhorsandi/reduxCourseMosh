@@ -39,7 +39,10 @@ function App() {
 
     // console.log(getBugsByUser(1)(store.getState()));
 
-    store.dispatch(() => {});
+    store.dispatch((dispatch, getState) => {
+      dispatch({ type: 'bugsReceived', bugs: [1, 2, 4] });
+      console.log(getState());
+    });
 
     store.dispatch({
       type: 'error',
