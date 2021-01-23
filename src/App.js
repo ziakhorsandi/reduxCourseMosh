@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import configureStore from './store/configureStore';
 import {
   bugAdded,
@@ -10,9 +10,12 @@ import {
   getUnresolvedBugs,
   bugAssignedToUser,
   getBugsByUser,
+  loadBugs,
 } from './store/bug';
-import { userAdded } from './store/users';
-import { projectAdded } from './store/projects';
+// import { userAdded } from './store/users';
+// import { projectAdded } from './store/projects';
+
+// import * as actions from './store/api';
 
 function App() {
   useEffect(() => {
@@ -39,15 +42,22 @@ function App() {
 
     // console.log(getBugsByUser(1)(store.getState()));
 
-    store.dispatch((dispatch, getState) => {
-      dispatch({ type: 'bugsReceived', bugs: [1, 2, 4] });
-      console.log(getState());
-    });
+    // store.dispatch((dispatch, getState) => {
+    //   dispatch({ type: 'bugsReceived', bugs: [1, 2, 4] });
+    //   console.log(getState());
+    // });
 
-    store.dispatch({
-      type: 'error',
-      payload: { message: 'An Error Accurred' },
-    });
+    // //--for toast middleware
+    // store.dispatch({
+    //   type: 'error',
+    //   payload: { message: 'An Error Accurred' },
+    // });
+
+    //------for cache
+    store.dispatch(loadBugs());
+    setTimeout(() => {
+      store.dispatch(loadBugs());
+    }, 2000);
   }, []);
 
   return (
