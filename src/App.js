@@ -11,7 +11,9 @@ import {
   bugAssignedToUser,
   getBugsByUser,
   loadBugs,
+  addBug,
 } from './store/bug';
+import { apiCallBegan } from './store/api';
 // import { userAdded } from './store/users';
 // import { projectAdded } from './store/projects';
 
@@ -20,25 +22,6 @@ import {
 function App() {
   useEffect(() => {
     const store = configureStore();
-    // store.dispatch(bugAdded({ description: 'bug1' }));
-    // store.dispatch(bugAdded({ description: 'bug2' }));
-    // store.dispatch(bugAdded({ description: 'bug3' }));
-    // store.dispatch(bugResolved({ id: 1 }));
-    // store.dispatch(bugRemoved({ id: 1 }));
-
-    // const x = getUnresolvedBugs(store.getState());
-    // const y = getUnresolvedBugs(store.getState());
-    // console.log(x === y);
-
-    // const unresolvedBugs = getUnresolvedBugs(store.getState());
-    // console.log(unresolvedBugs);
-
-    // store.dispatch(projectAdded({ name: 'prj1' }));
-
-    // store.dispatch(userAdded({ userName: 'name1' }));
-    // store.dispatch(userAdded({ userName: 'name2' }));
-
-    // store.dispatch(bugAssignedToUser({ userId: 1, bugId: 2 }));
 
     // console.log(getBugsByUser(1)(store.getState()));
 
@@ -53,11 +36,14 @@ function App() {
     //   payload: { message: 'An Error Accurred' },
     // });
 
-    //------for cache
-    store.dispatch(loadBugs());
-    setTimeout(() => {
-      store.dispatch(loadBugs());
-    }, 2000);
+    // //------for cache
+    // store.dispatch(loadBugs());
+    // setTimeout(() => {
+    //   store.dispatch(loadBugs());
+    // }, 2000);
+
+    //add to server
+    store.dispatch(addBug({ description: 'bugA' }));
   }, []);
 
   return (
