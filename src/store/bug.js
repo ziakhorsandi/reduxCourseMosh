@@ -35,7 +35,8 @@ const slice = createSlice({
     },
     bugAssignedToUser: (bugs, action) => {
       const index = bugs.list.findIndex(
-        (bug) => bug.id === action.payload.bugId
+        // (bug) => bug.id === action.payload.bugId
+        (bug) => bug.id === action.payload.id
       );
       bugs.list[index].user = action.payload.userId;
     },
@@ -77,6 +78,21 @@ export const addBug = (bug) =>
     method: 'post',
     data: bug,
     onSucess: bugAdded.type,
+  });
+
+export const resolveBug = (id) =>
+  apiActions.apiCallBegan({
+    url: url + '/' + id,
+    method: 'patch',
+    data: { resolved: false },
+    onSucess: bugResolved.type,
+  });
+export const assignBugToUser = (bugId, userId) =>
+  apiActions.apiCallBegan({
+    url: url + '/' + bugId,
+    method: 'patch',
+    data: { userId },
+    onSucess: bugAssignedToUser.type,
   });
 
 //--------------Selector-------------

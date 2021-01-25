@@ -12,6 +12,8 @@ import {
   getBugsByUser,
   loadBugs,
   addBug,
+  resolveBug,
+  assignBugToUser,
 } from './store/bug';
 import { apiCallBegan } from './store/api';
 // import { userAdded } from './store/users';
@@ -43,7 +45,15 @@ function App() {
     // }, 2000);
 
     //add to server
-    store.dispatch(addBug({ description: 'bugA' }));
+    // store.dispatch(addBug({ description: 'bugA' }));
+    // store.dispatch(loadBugs());
+    // setTimeout(() => {
+    //   store.dispatch(resolveBug(1));
+    // }, 2000);
+    store.dispatch(loadBugs());
+    setTimeout(() => {
+      store.dispatch(assignBugToUser(1, 4));
+    }, 2000);
   }, []);
 
   return (
